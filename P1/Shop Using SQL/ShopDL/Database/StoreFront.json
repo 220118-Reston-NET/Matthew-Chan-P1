@@ -1,0 +1,21 @@
+[
+  {
+    "Name": "Isekai Special",
+    "Address": "4444 Truck Lane",
+    "Products": [
+      {
+        "Name": "Out of this World Sandwich",
+        "Price": 10,
+        "Desc": "",
+        "Age_Restriction": 0
+      },
+      {
+        "Name": "Cthulus Tentacles",
+        "Price": 42,
+        "Desc": "",
+        "Age_Restriction": 0
+      }
+    ],
+    "Orders": []
+  }
+]
