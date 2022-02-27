@@ -1,3 +1,7 @@
+
+
+
+
 # YML is another markup language that is sentitive to "spaces" so careful where you tab your keywords
 # In this case, we are telling the Github server should do to be able to deploy our api
 name: Build, Test, and Deploy API
@@ -33,59 +37,11 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-        
-    # Will setup a JDK for our computer since the SonarQube uses it to run
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.11
-    
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-    
-    # Just gets the necesarry packages for the SonarQube tool
-    - name: Cache SonarCloud packages
-      uses: actions/cache@v1
-      with:
-        path: ~\sonar\cache
-        key: ${{ runner.os }}-sonar
-        restore-keys: ${{ runner.os }}-sonar
-
-    - name: Cache SonarCloud scanner
-      id: cache-sonar-scanner
-      uses: actions/cache@v1
-      with:
-        path: .\.sonar\scanner
-        key: ${{ runner.os }}-sonar-scanner
-        restore-keys: ${{ runner.os }}-sonar-scanner
-        
-    - name: Install SonarCloud scanner
-      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-      shell: pwsh #NOTED: Changed from Powershell to pwsh
-      run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool install dotnet-sonarscanner --version 5.5.3 --tool-path .\.sonar\scanner
-          
+              
     # Restore dependencies in our .NET application
     # Essentially, we will get all the external packages we install (ex: System.Data.SqlClient)
     - name: Restore dependencies
       run: dotnet restore
-      
-    # Doing our unit tests and making sure that all of it passes before even deploying this app
-    - name: Test
-      run: dotnet test --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-    
-    # This is the step where you have to configure things
-    - name: Build and analyze
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      shell: pwsh
-      run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"220118-Reston-NET_Training-code" /o:"220118-reston-net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.coverage.exclusions=**/PokeApi/wwwroot/lib/**,**/**PokeDL/*.cs,**/PokeApi/Controllers/*.cs /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.vstest.reportsPath="**/TestResults/*.trx"
-          dotnet build ./PokeApi -c Release
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
       
     # We are creating our publish folder for us to use
     - name: Create Publish folder
