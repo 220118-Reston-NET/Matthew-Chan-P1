@@ -1,7 +1,3 @@
-
-
-
-
 # YML is another markup language that is sentitive to "spaces" so careful where you tab your keywords
 # In this case, we are telling the Github server should do to be able to deploy our api
 name: Build, Test, and Deploy API
@@ -86,8 +82,8 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"220118-Reston-NET_Matthew-Chan-P1" /o:"220118-reston-net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        <insert_your_clean_build_command>
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"220118-Reston-NET_Matthew-Chan-P1" /o:"220118-reston-net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.coverage.exclusions=**/ShopApi/wwwroot/lib/**,**/**ShopDL/*.cs,**/ShopApi/Controllers/*.cs /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.vstest.reportsPath="**/TestResults/*.trx"
+        dotnet build ./ShopApi -c Release 
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
     
     # We are creating our publish folder for us to use

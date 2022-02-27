@@ -38,11 +38,11 @@ namespace ShopApi.Controllers
 
         
         // GET: api/Order/7
-        [HttpGet("GetByCust")]
-        public IActionResult GetOrderByCustId(int custId)
+        [HttpGet("CustOrder")]
+        public IActionResult GetOrderByCustId([FromQuery]int orderFromCustId)
         {
             try{
-                List<Order> ord = _orderBL.GetACustomerOrder(custId);
+                List<Order> ord = _orderBL.GetACustomerOrder(orderFromCustId);
                 string orderDetails = "";
                 for(int i = 0; i < ord.Count; i++){
                     orderDetails = ord[i].ToReadableFormat();
@@ -57,11 +57,11 @@ namespace ShopApi.Controllers
             
         }  
         
-        [HttpGet("GetByShop/GetOrderFromShopId")]
-        public IActionResult GetOrderByShopId(int shopId)
+        [HttpGet("ShopOrder/")]
+        public IActionResult GetOrderByShopId([FromQuery] int GetOrderFromShopId)
         {
             try{
-                List<Order> ord = _orderBL.GetAShopOrder(shopId);
+                List<Order> ord = _orderBL.GetAShopOrder(GetOrderFromShopId);
                 string orderDetails = "";
                 for(int i = 0; i < ord.Count; i++){
                     orderDetails = ord[i].ToReadableFormat();

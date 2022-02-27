@@ -31,8 +31,8 @@ namespace ShopApi.Controllers
                 return Conflict(exe.Message);
             }
         }
-        [HttpGet("Inventory/GetAnInventory")]
-        public IActionResult GetInventory(int sId){
+        [HttpGet("Inventory")]
+        public IActionResult GetInventory([FromQuery] int sId){
             try{
                 return Ok( _storeBL.GetSpecificInventory(sId));
             }

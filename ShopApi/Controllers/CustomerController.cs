@@ -75,8 +75,8 @@ namespace ShopApi.Controllers
         
 */
         // GET: api/Customer/5
-        [HttpGet("Name")]
-        public IActionResult GetCustomerByName(string custName)
+        [HttpGet()]
+        public IActionResult GetCustomerByName([FromQuery] string custName)
         {
             try{
                 if(string.IsNullOrWhiteSpace(custName)){
@@ -96,7 +96,7 @@ namespace ShopApi.Controllers
         public IActionResult Post([FromBody] Customer cust)
         {
             try{
-                return Ok( _custBL.AddCustomer(cust) );
+                return Created( "Successfully added", _custBL.AddCustomer(cust) );
             }
             catch(System.Exception exe){
                 return Conflict(exe.Message); // 400 ex
@@ -104,11 +104,12 @@ namespace ShopApi.Controllers
         }
 
         // PUT: api/Customer/5
-        [HttpPut("ChangeCustInfo")]
-        public IActionResult Put([FromBody] Customer c_cust)
+        [HttpPut("Update")]
+        public IActionResult Put([FromQuery] int id,[FromBody] Customer c_cust)
         {
+            c_cust.custId = id;
             try{
-                return Ok( _custBL.UpdateCustomer(c_cust) );
+                return Ok( _custBL.UpdateCustomer(c_cust) ); // please implement
             }
             catch(System.Exception exe){
                 return Conflict(exe.Message); // 400 ex
