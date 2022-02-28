@@ -9,6 +9,7 @@ using ShopBL;
 using ShopModel;
 
 
+
 namespace ShopApi.Controllers
 {
     [Route("api/[controller]")]
@@ -30,11 +31,18 @@ namespace ShopApi.Controllers
         public IActionResult GetAllOrder()
         { 
             try{
+                Log.Information("Retrieve all orders");
                 return Ok(_orderBL.GetAllOrder()); 
             }
             catch(SqlException)
             {
+                Log.Information("No Orders in the database");
                 return NotFound();
+            }
+            catch(System.Exception exe)
+            {
+                Log.Information(exe.Message);
+                return Conflict(exe.Message);
             }
             
         }
@@ -49,6 +57,11 @@ namespace ShopApi.Controllers
         public IActionResult GetOrderByCustId([FromQuery]int orderFromCustId)
         {
             try{
+                if(orderFromCustId == 0){
+                    Log.Information("Error: id is empty");
+                    return BadRequest(new{Result = "Error, id is empty"});
+                }
+                Log.Information("Getting a customer's orders from the cust Id");
                 List<Order> ord = _orderBL.GetACustomerOrder(orderFromCustId);
                 string orderDetails = "";
                 for(int i = 0; i < ord.Count; i++){
@@ -59,7 +72,13 @@ namespace ShopApi.Controllers
             }
             catch(SqlException)
             {
+                Log.Information("No Orders in the database");
                 return NotFound();
+            }
+            catch(System.Exception exe)
+            {
+                Log.Information(exe.Message);
+                return Conflict(exe.Message);
             }
             
         }  
@@ -73,6 +92,11 @@ namespace ShopApi.Controllers
         public IActionResult GetOrderByShopId([FromQuery] int GetOrderFromShopId)
         {
             try{
+                if(GetOrderFromShopId == 0){
+                    Log.Information("Error: id is empty");
+                    return BadRequest(new{Result = "Error, id is empty"});
+                }
+                Log.Information("Getting a shop's orders from the shop Id");
                 List<Order> ord = _orderBL.GetAShopOrder(GetOrderFromShopId);
                 string orderDetails = "";
                 for(int i = 0; i < ord.Count; i++){
@@ -82,7 +106,13 @@ namespace ShopApi.Controllers
             }
             catch(SqlException)
             {
+                Log.Information("No Orders in the database");
                 return NotFound();
+            }
+            catch(System.Exception exe)
+            {
+                Log.Information(exe.Message);
+                return Conflict(exe.Message);
             }
             
         } 
@@ -135,6 +165,11 @@ namespace ShopApi.Controllers
         [HttpPost("Cart/AddAnOrderToCart")]
         public IActionResult Post(int custId, int storeId, int prodId, int quantity) {
             try {
+                if(custId == 0 || storeId == 0 || prodId == 0 || quantity == 0){
+                    Log.Information("Error: an input is empty");
+                    return BadRequest(new{Result = "Error, an input is empty"});
+                }
+                Log.Information("Adding an order to the cart");
                 Product prod = _orderBL.ProductIdToProduct(prodId);
                 List<LineItem> newLineItemList = new List<LineItem>{new LineItem(prod,quantity)};
                 List<string> newStoreAddressStringList = new List<string>{_orderBL.ConvertSFIdToSFAddress(storeId)};
@@ -143,9 +178,11 @@ namespace ShopApi.Controllers
                 _orderBL.CheckValidProduct(storeId,prodId);
                 _orderBL.CheckValidAge(custId, prodId);
                 _orderBL.checkOrder(prodId,quantity, _orderBL.GetAllCart(), storeId);
+                Log.Information("Order successfully added into the cart");
                 return Created("Sucessfully added an item to the shopping cart", _orderBL.AddCart(ord, custId, storeId ));
             } 
             catch(System.Exception exe){
+                Log.Information(exe.Message);
                 return Conflict(exe.Message); 
             }
         }
@@ -157,6 +194,7 @@ namespace ShopApi.Controllers
         [HttpGet("Cart/GetCartOrders")]
         public IActionResult Get() {
             try{
+                Log.Information("Getting the orders from the cart");
                 Order ord = _orderBL.GetAllCart();
                 string orderDetails = "";
                 orderDetails = ord.ToReadableFormat();
@@ -165,7 +203,13 @@ namespace ShopApi.Controllers
             }
             catch(SqlException)
             {
+                Log.Information("No Orders are in the cart");
                 return NotFound();
+            }
+            catch(System.Exception exe)
+            {
+                Log.Information(exe.Message);
+                return Conflict(exe.Message);
             }
         }
 
@@ -176,12 +220,19 @@ namespace ShopApi.Controllers
         [HttpDelete("Cart/DeleteCartOrders")]
         public IActionResult Delete() {
             try{
+                Log.Information("Clearing the cart");
                 _orderBL.ClearCart();
                 return Ok("Cart Cleared"); 
             }
             catch(SqlException)
             {
+                Log.Information("Cart does not exist");
                 return NotFound();
+            }
+            catch(System.Exception exe)
+            {
+                Log.Information(exe.Message);
+                return Conflict(exe.Message);
             }
         }
 
@@ -222,7 +273,9 @@ namespace ShopApi.Controllers
         public IActionResult Post()
         {
             try{
+                Log.Information("Committing cart to orders");
                 _orderBL.AddOrder();
+                Log.Information("Order successful. Cart cleared");
                 return Ok( "Order sent" );
             }
             catch(System.Exception exe){
@@ -231,10 +284,6 @@ namespace ShopApi.Controllers
         }
 
 
-        // DELETE: api/Order/5
-        [HttpDelete("id")]
-        public void Delete(int id)
-        {
-        }
+
     }
 }

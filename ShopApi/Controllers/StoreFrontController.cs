@@ -28,10 +28,12 @@ namespace ShopApi.Controllers
         [HttpGet("Inventory/GetAllInventory")]
         public IActionResult GetInventory(){
             try{
+                Log.Information("Getting all of the inventory");
                 return Ok( _storeBL.GetAllInventory());
             }
             catch(System.Exception exe)
             {
+                Log.Information(exe.Message);
                 return Conflict(exe.Message);
             }
         }
@@ -44,10 +46,16 @@ namespace ShopApi.Controllers
         [HttpGet("Inventory")]
         public IActionResult GetInventory([FromQuery] int sId){
             try{
+                if(sId == 0){
+                    Log.Information("Error: id is empty");
+                    return BadRequest(new{Result = "Error, id is empty"});
+                }
+                Log.Information("Getting inventory from shop " + sId);
                 return Ok( _storeBL.GetSpecificInventory(sId));
             }
             catch(System.Exception exe)
             {
+                Log.Information(exe.Message);
                 return Conflict(exe.Message);
             }
         }
@@ -65,17 +73,25 @@ namespace ShopApi.Controllers
         public IActionResult CheckManagorialCredentials(string username,string password, int prodId, int storeId, int amount)
         {
             try{
+                if(string.IsNullOrWhiteSpace(username)){
+                    Log.Information("Error: username is empty");
+                    return BadRequest(new{Result = "Error, username is empty"});
+                }
+                if(string.IsNullOrWhiteSpace(password)){
+                    Log.Information("Error: password is empty");
+                    return BadRequest(new{Result = "Error, password is empty"});
+                }
+                Log.Information("Checking Credentials");
                 Customer c = _custBL.GetCustomerFromLogin(username,password);
                 _custBL.CheckAuthorityClearance(c,1);
+                Log.Information("Credentials cleared and restocking/adding items to shop");
                 return Ok( _storeBL.AddOrRestock(prodId, storeId, amount)); 
             }
             catch(System.Exception exe)
             {
+                Log.Information(exe.Message);
                 return Conflict(exe.Message);
             }
-            
         }
-
-
     }
 }

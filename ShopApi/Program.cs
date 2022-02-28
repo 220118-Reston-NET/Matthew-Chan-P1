@@ -1,7 +1,14 @@
+global using Serilog;
 using ShopBL;
 using ShopDL;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("./logs/user.txt") //We configure our logger to save in this file
+    .CreateLogger();
+
+
 
 // Add services to the container.
 

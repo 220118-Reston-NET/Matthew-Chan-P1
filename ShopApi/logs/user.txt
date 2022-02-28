@@ -1,0 +1,7 @@
+2022-02-27 22:43:10.338 -08:00 [INF] Getting All Customers information
+2022-02-27 22:43:13.204 -08:00 [INF] Getting All Customers information
+2022-02-27 22:43:33.568 -08:00 [INF] Searching for Customer by name
+2022-02-27 22:43:33.634 -08:00 [INF] There is no Customer with this ID
+2022-02-27 22:43:55.232 -08:00 [INF] Searching for Customer by name
+2022-02-27 23:03:56.056 -08:00 [INF] Error: Id is empty
+2022-02-27 23:04:06.446 -08:00 [INF] Error: Id is empty

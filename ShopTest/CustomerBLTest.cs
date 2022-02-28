@@ -7,7 +7,7 @@ using ShopModel;
 using Xunit;
 
 namespace ShopTest{
-    public class CustomerBLTest{
+    public class CustomerTest{
         
         
         [Fact]
@@ -51,5 +51,26 @@ namespace ShopTest{
             Assert.Equal(custNumber, actualListOfCustomer[0].PhoneNumber);
 
         }
+    
+
+
+        [Fact]
+        public void Should_Set_Valid_Phone_Number()
+        {
+            //Arrange
+            Customer cust = new Customer();
+            string validPhoneNumber = "112-223-3334";
+            //Act
+            cust.PhoneNumber = validPhoneNumber;
+            //Assert
+            Assert.NotNull(cust.PhoneNumber);
+            Assert.Equal(validPhoneNumber, cust.PhoneNumber);
+
+        }
+
+
+
+
+        
     }
 }

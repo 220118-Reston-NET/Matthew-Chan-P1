@@ -54,10 +54,12 @@ namespace ShopApi.Controllers
         public IActionResult GetAllCustomers()
         {
             try{
+                Log.Information("Getting All Customers information");
                 return Ok(_custBL.GetAllCustomers()); 
             }
             catch(SqlException)
             {
+                Log.Information("No customers retrieved");
                 return NotFound();
             }
             
@@ -84,16 +86,19 @@ namespace ShopApi.Controllers
         /// <param name="custName"></param>
         /// <returns></returns>
         [HttpGet()]
-        public IActionResult GetCustomerByName([FromQuery] string custName)
+        public IActionResult GetCustomerByName([FromQuery] string custName = "")
         {
             try{
                 if(string.IsNullOrWhiteSpace(custName)){
+                    Log.Information("Error: Name is empty");
                     return BadRequest(new{Result = "Error, Name is empty"}); // form not completed
                 }
+                Log.Information("Searching for Customer" + custName);
                 return Ok( _custBL.SearchCustomer(custName) ); 
             }
             catch(System.Exception exe)
             {
+                Log.Information(exe.Message);
                 return NotFound(exe.Message);
             }
             
@@ -108,22 +113,35 @@ namespace ShopApi.Controllers
         public IActionResult Post([FromBody] Customer cust)
         {
             try{
+                Log.Information("Adding a new Customer");
                 return Created( "Successfully added", _custBL.AddCustomer(cust) );
             }
             catch(System.Exception exe){
+                Log.Information(exe.Message);
                 return Conflict(exe.Message); // 400 ex
             }
         }
 
-        // PUT: api/Customer/5
+        /// <summary>
+        /// updates customer information given their Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="c_cust"></param>
+        /// <returns></returns>
         [HttpPut("Update")]
         public IActionResult Put([FromQuery] int id,[FromBody] Customer c_cust)
         {
+            if(id == 0){
+                Log.Information("Error: Id is empty");
+                return BadRequest(new{Result = "Error, Id is empty"}); // form not completed
+            }
             c_cust.custId = id;
             try{
+                Log.Information("Updating customer information");
                 return Ok( _custBL.UpdateCustomer(c_cust) ); 
             }
             catch(System.Exception exe){
+                Log.Information(exe.Message);
                 return Conflict(exe.Message); // 400 ex
             }
         }
@@ -144,10 +162,20 @@ namespace ShopApi.Controllers
         public IActionResult CheckManagorialCredentials(string username,string password)
         {
             try{
+                if(string.IsNullOrWhiteSpace(username)){
+                    Log.Information("Error: username is empty");
+                    return BadRequest(new{Result = "Error, username is empty"});
+                }
+                if(string.IsNullOrWhiteSpace(password)){
+                    Log.Information("Error: password is empty");
+                    return BadRequest(new{Result = "Error, password is empty"});
+                }
+                Log.Information("Checking Customer Security Clearance");
                 return Ok( _custBL.CheckAuthorityClearance(_custBL.GetCustomerFromLogin(username,password),1) ); 
             }
             catch(System.Exception exe)
             {
+                Log.Information(exe.Message);
                 return Conflict(exe.Message);
             }
             
