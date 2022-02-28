@@ -22,7 +22,7 @@ jobs:
       name: 'Production'
     defaults:
       run:
-        working-directory: ShopApi/ # This might differ depending on where your project/app is in your remote repo
+        working-directory: ShopApi # This might differ depending on where your project/app is in your remote repo
     
     # Steps are just the sequence of things that this computer/server needs to run to complete a job
     steps:
