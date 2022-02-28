@@ -17,7 +17,6 @@ namespace ProductTest
             prod.Price = validPrice;
 
             //Assert
-            Assert.NotNull(prod.Price);
             Assert.Equal(validPrice, prod.Price);
         }
 
