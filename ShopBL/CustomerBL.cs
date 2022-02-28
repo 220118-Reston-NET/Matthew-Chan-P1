@@ -16,7 +16,6 @@ namespace ShopBL{
         
         
         public Customer AddCustomer(Customer c_customer){
-
             return _repo.AddCustomer(c_customer);
         } 
         
@@ -39,17 +38,12 @@ namespace ShopBL{
         }
 
         public Customer GetCustomerFromLogin(string username, string password){
-            Console.WriteLine("Test 1.1");
             List<Customer> listOfCustomers = _repo.GetAllCustomer();
-            Console.WriteLine("Test 1.2");
             foreach(Customer c in listOfCustomers){
-                Console.WriteLine("Test 1.3");
                 if(c.UserName == username && c.Password == password){
-                    Console.WriteLine("Test 1.4");
                     return c;
                 }
             }
-            Console.WriteLine("Test 1.5");
             throw new Exception("Customer not found from username + password.");
         }
         public bool CheckAuthorityClearance(Customer c, int minClearanceLevel){
@@ -76,9 +70,14 @@ namespace ShopBL{
         public List<Customer> SearchCustomer(string c_name){
             List<Customer> listOfCustomers = _repo.GetAllCustomer();
             // LINQ library
-            return listOfCustomers
+            List<Customer> listOfCustomersName = listOfCustomers
                         .Where(cust => cust.Name.Contains(c_name))
                         .ToList();
+            if(CheckIfEmpty(listOfCustomersName) == true){
+                throw new Exception("There is no Customer with this ID");
+            }
+            // LINQ library
+            return listOfCustomersName;
         }
         
         public List<Customer> SearchCustomerFromNumber(string c_pnum){
@@ -118,7 +117,12 @@ namespace ShopBL{
         }
 
         public Customer UpdateCustomer(Customer c_cust){
-            return _repo.UpdateCustomer(c_cust);
+            try{
+                return _repo.UpdateCustomer(c_cust);
+            }
+            catch(System.Exception exe){
+                throw new Exception(exe.Message);
+            }
         } 
     }
 }

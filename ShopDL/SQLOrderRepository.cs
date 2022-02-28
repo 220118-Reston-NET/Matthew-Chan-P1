@@ -485,7 +485,8 @@ namespace ShopDL
                             INNER JOIN LineItem li on ol.lineItemId = li.lineItemId 
                             INNER JOIN Product p ON p.prodId  = li.prodId  
                             INNER JOIN StoreFront sf ON o.storeId = sf.storeId
-                            where sf.storeId = @shopId";
+                            where sf.storeId = @shopId
+                            ORDER BY cast(o.creationTime as date) ASC, (p.prodPrice * li.itemQuantity) DESC";
             using (SqlConnection con = new SqlConnection(_connectionStrings))
             {
                 //Opens connection to the database

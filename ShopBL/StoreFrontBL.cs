@@ -73,7 +73,6 @@ namespace ShopBL{
         public bool CheckValidStoreId(int storeId){
             List<StoreFront> listOfStoreFronts = _repo.GetAllStoreFront();
             for(int i = 0; i < listOfStoreFronts.Count;i++){
-                Console.WriteLine("comapring with ID: " + listOfStoreFronts[i].storeId);
                 if(listOfStoreFronts[i].storeId == storeId){
                     return true;
                 }

@@ -22,7 +22,10 @@ namespace ShopApi.Controllers
         // GET: api/Order
 
 
-        // GET: api/Order/6
+        /// <summary>
+        /// Gets all the Orders from every single customer and returns it in json format
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetAllOrder")]
         public IActionResult GetAllOrder()
         { 
@@ -37,7 +40,11 @@ namespace ShopApi.Controllers
         }
 
         
-        // GET: api/Order/7
+        /// <summary>
+        /// From a customer Id, displays the details of a customer's order
+        /// </summary>
+        /// <param name="orderFromCustId"></param>
+        /// <returns></returns>
         [HttpGet("CustOrder")]
         public IActionResult GetOrderByCustId([FromQuery]int orderFromCustId)
         {
@@ -57,6 +64,11 @@ namespace ShopApi.Controllers
             
         }  
         
+        /// <summary>
+        /// Displays all the orders placed in a specific shop
+        /// </summary>
+        /// <param name="GetOrderFromShopId"></param>
+        /// <returns></returns>
         [HttpGet("ShopOrder/")]
         public IActionResult GetOrderByShopId([FromQuery] int GetOrderFromShopId)
         {
@@ -111,6 +123,15 @@ namespace ShopApi.Controllers
             } 
         }
 */
+
+        /// <summary>
+        /// Recieves input and adds an order to the cart(does not commit the order)
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="storeId"></param>
+        /// <param name="prodId"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         [HttpPost("Cart/AddAnOrderToCart")]
         public IActionResult Post(int custId, int storeId, int prodId, int quantity) {
             try {
@@ -122,12 +143,17 @@ namespace ShopApi.Controllers
                 _orderBL.CheckValidProduct(storeId,prodId);
                 _orderBL.CheckValidAge(custId, prodId);
                 _orderBL.checkOrder(prodId,quantity, _orderBL.GetAllCart(), storeId);
-                return Ok( _orderBL.AddCart(ord, custId, storeId ));
+                return Created("Sucessfully added an item to the shopping cart", _orderBL.AddCart(ord, custId, storeId ));
             } 
             catch(System.Exception exe){
                 return Conflict(exe.Message); 
             }
         }
+
+        /// <summary>
+        /// checks to see all the orders in the cart
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("Cart/GetCartOrders")]
         public IActionResult Get() {
             try{
@@ -142,6 +168,11 @@ namespace ShopApi.Controllers
                 return NotFound();
             }
         }
+
+        /// <summary>
+        /// deletes all the orders in the cart
+        /// </summary>
+        /// <returns></returns>
         [HttpDelete("Cart/DeleteCartOrders")]
         public IActionResult Delete() {
             try{
@@ -183,7 +214,10 @@ namespace ShopApi.Controllers
             }
 */
 
-
+        /// <summary>
+        /// commits all the orders from the shopping card into orders
+        /// </summary>
+        /// <returns></returns>
         [HttpPost("CommitOrder")]
         public IActionResult Post()
         {

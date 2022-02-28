@@ -94,10 +94,9 @@ public class Customer{
     public string Password { get; set; }
     public int Authority { get; set; } // 0 is customer, 1 is manager
 
-    public static int idGenerator = 0;
+
     public Customer(){
-        custId = idGenerator;
-        idGenerator++;
+        custId = -1;
         Name = "John Smith";
         Age = 33;
         Address = "Utopia";

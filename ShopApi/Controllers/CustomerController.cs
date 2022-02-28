@@ -45,7 +45,11 @@ namespace ShopApi.Controllers
             _custBL = c_custBL;
         }
 
-        // GET: api/Customer
+
+        /// <summary>
+        /// Gathers all the customer's information from sql server
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("GetAll")]
         public IActionResult GetAllCustomers()
         {
@@ -74,7 +78,11 @@ namespace ShopApi.Controllers
 
         
 */
-        // GET: api/Customer/5
+        /// <summary>
+        /// Gets the information of a specific customer from the sql server
+        /// </summary>
+        /// <param name="custName"></param>
+        /// <returns></returns>
         [HttpGet()]
         public IActionResult GetCustomerByName([FromQuery] string custName)
         {
@@ -84,14 +92,18 @@ namespace ShopApi.Controllers
                 }
                 return Ok( _custBL.SearchCustomer(custName) ); 
             }
-            catch(SqlException)
+            catch(System.Exception exe)
             {
-                return NotFound();
+                return NotFound(exe.Message);
             }
             
         }
 
-        // POST: api/Customer
+        /// <summary>
+        /// Adds a cutomer to the sql server
+        /// </summary>
+        /// <param name="cust"></param>
+        /// <returns></returns>
         [HttpPost("AddNewCustomer")]
         public IActionResult Post([FromBody] Customer cust)
         {
@@ -109,7 +121,7 @@ namespace ShopApi.Controllers
         {
             c_cust.custId = id;
             try{
-                return Ok( _custBL.UpdateCustomer(c_cust) ); // please implement
+                return Ok( _custBL.UpdateCustomer(c_cust) ); 
             }
             catch(System.Exception exe){
                 return Conflict(exe.Message); // 400 ex
@@ -122,15 +134,21 @@ namespace ShopApi.Controllers
         {
         }
 
+        /// <summary>
+        /// From the username and password of the customer, checks to see if that person is a manager or customer
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpGet("CheckCredentials")]
         public IActionResult CheckManagorialCredentials(string username,string password)
         {
             try{
                 return Ok( _custBL.CheckAuthorityClearance(_custBL.GetCustomerFromLogin(username,password),1) ); 
             }
-            catch(SqlException)
+            catch(System.Exception exe)
             {
-                return NotFound();
+                return Conflict(exe.Message);
             }
             
         }

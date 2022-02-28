@@ -21,6 +21,10 @@ namespace ShopApi.Controllers
             _custBL = c_custBL;
         }
 
+        /// <summary>
+        /// Displays every single store's inventory
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("Inventory/GetAllInventory")]
         public IActionResult GetInventory(){
             try{
@@ -31,6 +35,12 @@ namespace ShopApi.Controllers
                 return Conflict(exe.Message);
             }
         }
+
+        /// <summary>
+        /// Displays a single store's inventory(selected by the shop id)
+        /// </summary>
+        /// <param name="sId"></param>
+        /// <returns></returns>
         [HttpGet("Inventory")]
         public IActionResult GetInventory([FromQuery] int sId){
             try{
@@ -42,6 +52,15 @@ namespace ShopApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Restocks the inventory if the person restocking is a manager
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="prodId"></param>
+        /// <param name="storeId"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         [HttpGet("Restock")]
         public IActionResult CheckManagorialCredentials(string username,string password, int prodId, int storeId, int amount)
         {
