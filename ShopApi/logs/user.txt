@@ -5,3 +5,6 @@
 2022-02-27 22:43:55.232 -08:00 [INF] Searching for Customer by name
 2022-02-27 23:03:56.056 -08:00 [INF] Error: Id is empty
 2022-02-27 23:04:06.446 -08:00 [INF] Error: Id is empty
+2022-02-28 13:58:17.668 -08:00 [INF] Adding an order to the cart
+2022-02-28 13:58:20.770 -08:00 [INF] Order successfully added into the cart
+2022-02-28 14:29:53.675 -08:00 [INF] Getting All Customers information
