@@ -22,7 +22,7 @@ jobs:
       name: 'Production'
     defaults:
       run:
-        working-directory: P1/Shop Using SQL/ShopApi/ # This might differ depending on where your project/app is in your remote repo
+        working-directory: ./ # This might differ depending on where your project/app is in your remote repo
     
     # Steps are just the sequence of things that this computer/server needs to run to complete a job
     steps:
@@ -80,13 +80,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      shell: powershell
+      shell: pwsh
+      
       run: |
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"220118-Reston-NET_Matthew-Chan-P1/P1/Shop Using SQL/" /o:"220118-reston-net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.coverage.exclusions=**/ShopApi/wwwroot/lib/**,**/**ShopDL/*.cs,**/ShopApi/Controllers/*.cs /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.vstest.reportsPath="**/TestResults/*.trx"
-        dotnet build ./ShopApi -c Release 
-
-
-        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"220118-Reston-NET_Matthew-Chan-P1" /o:"220118-reston-net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.coverage.exclusions=**/ShopApi/wwwroot/lib/**,**/**ShopDL/*.cs,**/ShopApi/Controllers/*.cs /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.vstest.reportsPath="**/TestResults/*.trx"
+          dotnet build ./ShopApi -c Release 
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
     
     # We are creating our publish folder for us to use
     - name: Create Publish folder
@@ -99,4 +98,4 @@ jobs:
         app-name: ShopDemos
         slot-name: 'Production'
         publish-profile: $${{secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
-        package: P1/Shop Using SQL/ShopApi/
+        package: ./publish
