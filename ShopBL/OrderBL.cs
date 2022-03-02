@@ -52,7 +52,7 @@ namespace ShopBL{
         }
         */
         public List<Order> GetAllOrder(){
-            List<Order> listOfAllOrders = ;
+            List<Order> listOfAllOrders = _repo.GetAllOrder();
             if(!listOfAllOrders.Any())
             {
                 throw new Exception("Error, no orders to view");
