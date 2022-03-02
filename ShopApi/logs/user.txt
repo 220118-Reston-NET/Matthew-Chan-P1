@@ -98,3 +98,5 @@
 2022-03-01 22:09:43.676 -08:00 [INF] Getting a shop's orders from the shop Id
 2022-03-01 22:09:54.882 -08:00 [INF] Getting a customer's orders from the cust Id
 2022-03-01 22:18:06.647 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 22:20:22.824 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 22:20:32.717 -08:00 [INF] Getting a customer's orders from the cust Id

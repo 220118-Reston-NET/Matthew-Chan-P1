@@ -215,6 +215,7 @@ namespace ShopBL{
                     int costOfLineItem = o[i].LineItems[i].Products.Price * o[i].LineItems[i].Quantity;
                     orderString += (o[i].LineItems[i].Products.Name + " " + o[i].LineItems[i].Quantity + " = " + o[i].LineItems[i].Quantity + "*$" + o[i].LineItems[i].Products.Price + " = $" + costOfLineItem + "       Ordered from: " + o[i].StoreFrontLocation[i] + "   at datetime: " + o[i].creationTime + "\n");
                     costOfOrder += costOfLineItem;
+                    break;
                 }
                 
             }
