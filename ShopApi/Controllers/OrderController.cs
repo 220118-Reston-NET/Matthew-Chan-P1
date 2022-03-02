@@ -196,6 +196,9 @@ namespace ShopApi.Controllers
             try{
                 Log.Information("Getting the orders from the cart");
                 Order ord = _orderBL.GetAllCart();
+                if(ord.LineItems.Count == 0){
+                throw new Exception("Error, Cart was empty");
+            }
                 string orderDetails = "";
                 orderDetails = ord.ToReadableFormat();
                 

@@ -229,9 +229,6 @@ namespace ShopBL{
         }
         public Order GetAllCart(){
             Order ord = _repo.GetAllCart();
-            if(ord.LineItems.Count == 0){
-                throw new Exception("Error, Cart was empty");
-            }
             return ord;
         }
         public void ClearCart(){
