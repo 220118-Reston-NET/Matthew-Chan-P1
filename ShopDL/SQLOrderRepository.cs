@@ -312,6 +312,7 @@ namespace ShopDL
             for(int i = 0; i < numberOfItems; i++){
                 UseInventory(o_order.LineItems[i].Products.prodId, listOfStoreId[i], o_order.LineItems[i].Quantity);
             }
+            ClearCart();
             return o_order;
         } 
 /*

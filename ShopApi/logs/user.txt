@@ -11,3 +11,7 @@
 2022-02-28 14:48:30.223 -08:00 [INF] Getting All Customers information
 2022-02-28 14:48:46.049 -08:00 [INF] Checking Customer Security Clearance
 2022-02-28 14:48:46.121 -08:00 [INF] Customer not found from username + password.
+2022-03-01 18:48:48.128 -08:00 [INF] Adding an order to the cart
+2022-03-01 18:48:51.971 -08:00 [INF] Order successfully added into the cart
+2022-03-01 18:49:55.851 -08:00 [INF] Committing cart to orders
+2022-03-01 18:49:58.387 -08:00 [INF] Order successful. Cart cleared
