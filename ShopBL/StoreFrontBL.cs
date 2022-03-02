@@ -57,8 +57,6 @@ namespace ShopBL{
             
             
             return listOfStoreFrontWithProduct;
-                        //.Where(store => store.Inv.Products.Contains(s_product))
-                        //.ToList()); 
         }
 
 

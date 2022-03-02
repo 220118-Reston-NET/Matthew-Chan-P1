@@ -88,11 +88,15 @@ namespace ShopBL{
                         .ToList();
         }
         public List<Customer> SearchCustomerFromEMail(string c_email){
-        List<Customer> listOfCustomers = _repo.GetAllCustomer();
-        // LINQ library
-        return listOfCustomers
-                    .Where(cust => cust.Email.Contains(c_email))
-                    .ToList();
+            List<Customer> listOfCustomers = _repo.GetAllCustomer();
+            // LINQ library
+            List<Customer> listOfCustFromEmail = listOfCustomers
+                        .Where(cust => cust.Email.Contains(c_email))
+                        .ToList();
+            if(CheckIfEmpty(listOfCustFromEmail) == true){
+                throw new Exception("There is no Customer with this Email");
+            }
+            return listOfCustFromEmail;
         }
 
         public void CheckIfValidPhoneNumber(string userInput){

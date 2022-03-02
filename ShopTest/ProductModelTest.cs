@@ -21,21 +21,20 @@ namespace ProductTest
         }
 
 
-        
-        /*
         [Theory]
         [InlineData(-10)]
-        [InlineData(-100)]
-        [InlineData( 1293012)]
+        [InlineData(-1293012)]
         
         public void ProductShouldInvalidateData(int p_invalidProduct){
             //Arrange
             Product prod = new Product();
             //act and assert
             Assert.Throws<System.Exception>(
-                () => prod.Price = p_invalidProduct
+                () => prod.Age_Restriction = p_invalidProduct
             );
-        }*/
+        }
+        
+        
 
     }
 }
