@@ -48,3 +48,7 @@
 2022-03-01 20:00:18.128 -08:00 [INF] Adding an order to the cart
 2022-03-01 20:00:18.524 -08:00 [INF] Order successfully added into the cart
 2022-03-01 20:00:20.428 -08:00 [INF] Getting the orders from the cart
+2022-03-01 20:12:21.449 -08:00 [INF] Getting the orders from the cart
+2022-03-01 20:12:37.016 -08:00 [INF] Adding an order to the cart
+2022-03-01 20:12:37.484 -08:00 [INF] Order successfully added into the cart
+2022-03-01 20:15:36.507 -08:00 [INF] Clearing the cart

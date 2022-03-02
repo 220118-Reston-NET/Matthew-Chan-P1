@@ -52,12 +52,12 @@ namespace ShopBL{
         }
         */
         public List<Order> GetAllOrder(){
-            List<Order> listOfAllOrders = _repo.GetAllOrder();
+            List<Order> listOfAllOrders = ;
             if(!listOfAllOrders.Any())
             {
                 throw new Exception("Error, no orders to view");
             }
-            return listOfAllOrders;
+            return _repo.GetAllOrder();
         }
         public List<Order> GetACustomerOrder( int cId){
             CheckValidCId(cId);
@@ -228,8 +228,7 @@ namespace ShopBL{
             return _repo.AddCart(o_order, custId, storeId);
         }
         public Order GetAllCart(){
-            Order ord = _repo.GetAllCart();
-            return ord;
+            return _repo.GetAllCart();
         }
         public void ClearCart(){
             _repo.ClearCart();
