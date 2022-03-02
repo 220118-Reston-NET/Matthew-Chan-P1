@@ -228,7 +228,11 @@ namespace ShopBL{
             return _repo.AddCart(o_order, custId, storeId);
         }
         public Order GetAllCart(){
-            return _repo.GetAllCart();
+            Order ord = _repo.GetAllCart();
+            if(ord.LineItems.Count == 0){
+                throw new Exception("Error, Cart was empty");
+            }
+            return ord;
         }
         public void ClearCart(){
             _repo.ClearCart();

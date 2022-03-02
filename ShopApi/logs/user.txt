@@ -15,3 +15,7 @@
 2022-03-01 18:48:51.971 -08:00 [INF] Order successfully added into the cart
 2022-03-01 18:49:55.851 -08:00 [INF] Committing cart to orders
 2022-03-01 18:49:58.387 -08:00 [INF] Order successful. Cart cleared
+2022-03-01 19:42:24.034 -08:00 [INF] Clearing the cart
+2022-03-01 19:42:28.032 -08:00 [INF] Getting the orders from the cart
+2022-03-01 19:42:37.470 -08:00 [INF] Clearing the cart
+2022-03-01 19:42:43.082 -08:00 [INF] Getting the orders from the cart
