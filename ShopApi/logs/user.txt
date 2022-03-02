@@ -52,3 +52,49 @@
 2022-03-01 20:12:37.016 -08:00 [INF] Adding an order to the cart
 2022-03-01 20:12:37.484 -08:00 [INF] Order successfully added into the cart
 2022-03-01 20:15:36.507 -08:00 [INF] Clearing the cart
+2022-03-01 20:55:05.071 -08:00 [INF] Adding an order to the cart
+2022-03-01 20:55:07.760 -08:00 [INF] Order successfully added into the cart
+2022-03-01 21:00:34.301 -08:00 [INF] Adding an order to the cart
+2022-03-01 21:00:35.852 -08:00 [INF] Order successfully added into the cart
+2022-03-01 21:00:41.139 -08:00 [INF] Getting the orders from the cart
+2022-03-01 21:00:48.689 -08:00 [INF] Adding an order to the cart
+2022-03-01 21:00:49.511 -08:00 [INF] Order successfully added into the cart
+2022-03-01 21:00:51.242 -08:00 [INF] Getting the orders from the cart
+2022-03-01 21:07:11.452 -08:00 [INF] Checking Customer Security Clearance
+2022-03-01 21:24:17.787 -08:00 [INF] Getting All Customers information
+2022-03-01 21:24:28.526 -08:00 [INF] Getting All Customers information
+2022-03-01 21:24:53.947 -08:00 [INF] Searching for Customermatt
+2022-03-01 21:24:54.009 -08:00 [INF] There is no Customer with this ID
+2022-03-01 21:25:04.213 -08:00 [INF] Searching for CustomerMatt
+2022-03-01 21:25:26.110 -08:00 [INF] Checking Customer Security Clearance
+2022-03-01 21:25:26.165 -08:00 [INF] Customer not found from username + password.
+2022-03-01 21:25:35.865 -08:00 [INF] Retrieve all orders
+2022-03-01 21:26:00.860 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:26:11.326 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 21:26:27.861 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 21:36:03.271 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:36:10.583 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:36:19.146 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:36:26.315 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:36:38.236 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 21:36:46.231 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 21:36:54.143 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 21:41:44.144 -08:00 [INF] Getting the orders from the cart
+2022-03-01 21:41:58.517 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 21:48:05.808 -08:00 [INF] Retrieve all orders
+2022-03-01 21:51:35.121 -08:00 [INF] Retrieve all orders
+2022-03-01 21:51:42.544 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:53:41.403 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:55:37.818 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:55:37.930 -08:00 [INF] Error, no orders to view for this Customer
+2022-03-01 21:55:42.633 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 21:56:39.543 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 22:00:01.127 -08:00 [INF] Retrieve all orders
+2022-03-01 22:00:30.023 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 22:00:43.272 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 22:00:57.766 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 22:01:07.941 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 22:03:53.760 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 22:09:43.676 -08:00 [INF] Getting a shop's orders from the shop Id
+2022-03-01 22:09:54.882 -08:00 [INF] Getting a customer's orders from the cust Id
+2022-03-01 22:18:06.647 -08:00 [INF] Getting a customer's orders from the cust Id

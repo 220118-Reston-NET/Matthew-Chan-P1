@@ -292,7 +292,7 @@ namespace ShopBL
         /// <returns></returns>
         bool CheckValidProduct(int sId, int pId);
 
-        
+        string DisplayAllOrdersInReadableFormat(List<Order> o);
 
         ////////////////
         

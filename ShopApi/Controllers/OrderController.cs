@@ -63,12 +63,8 @@ namespace ShopApi.Controllers
                 }
                 Log.Information("Getting a customer's orders from the cust Id");
                 List<Order> ord = _orderBL.GetACustomerOrder(orderFromCustId);
-                string orderDetails = "";
-                for(int i = 0; i < ord.Count; i++){
-                    orderDetails = ord[i].ToReadableFormat();
-                }
-                return Ok( orderDetails  ); 
- 
+                string o = _orderBL.DisplayAllOrdersInReadableFormat(ord);
+                return Ok( o   );
             }
             catch(SqlException)
             {
@@ -98,11 +94,8 @@ namespace ShopApi.Controllers
                 }
                 Log.Information("Getting a shop's orders from the shop Id");
                 List<Order> ord = _orderBL.GetAShopOrder(GetOrderFromShopId);
-                string orderDetails = "";
-                for(int i = 0; i < ord.Count; i++){
-                    orderDetails = ord[i].ToReadableFormat();
-                }
-                return Ok( orderDetails  ); 
+                string o = _orderBL.DisplayAllOrdersInReadableFormat(ord);
+                return Ok( o   );
             }
             catch(SqlException)
             {

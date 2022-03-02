@@ -479,7 +479,7 @@ namespace ShopDL
         {   
             List<Order> listOfOrder = new List<Order>();    
 
-            string sqlQuery = @"SELECT o.orderId, li.lineItemId, p.prodId, p.prodName, p.prodPrice, p.prodDesc, p.prodAgeRestriction,  li.itemQuantity, sf.storeAddress
+            string sqlQuery = @"SELECT o.orderId, li.lineItemId, p.prodId, p.prodName, p.prodPrice, p.prodDesc, p.prodAgeRestriction,  li.itemQuantity, sf.storeAddress, o.creationTime
                             FROM Customer c     
                             INNER JOIN Orders o ON c.custId = o.custId 
                             INNER JOIN OrderToLineItem ol ON o.orderId = ol.orderId 
@@ -505,7 +505,7 @@ namespace ShopDL
                 List<LineItem> listOfLineItems = new List<LineItem>();
                 List<string> listOfStoreFrontLocation = new List<string>();
                 int tPrice = 0;
-
+                DateTime creationTime = DateTime.Now;
                 while (reader.Read())
                 {
                     shopId = reader.GetInt32(0);
@@ -524,7 +524,7 @@ namespace ShopDL
                     );
                     listOfStoreFrontLocation.Add(reader.GetString(8));
                     tPrice += reader.GetInt32(4);
-
+                    creationTime = reader.GetDateTime(9);
                     listOfOrder.Add(
                         new Order(
                         shopId,

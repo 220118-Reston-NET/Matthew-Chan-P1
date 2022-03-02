@@ -206,20 +206,22 @@ namespace ShopBL{
                 Console.WriteLine(listOfStoreFronts[i].storeId + ") " + listOfStoreFronts[i].Name);
             }
         }
-        /*
-        public void DisplayAllOrdersInReadableFormat(Order o){
+        
+        public string DisplayAllOrdersInReadableFormat(List<Order> o){
             string orderString = "";
             int costOfOrder = 0;
-
-            for(int i = 0; i < LineItems.Count; i ++) {
-                int costOfLineItem = LineItems[i].Products.Price * LineItems[i].Quantity;
-                orderString += (LineItems[i].Products.Name + " " + LineItems[i].Quantity + " = " + LineItems[i].Quantity + "*$" + LineItems[i].Products.Price + " = $" + costOfLineItem + "       Ordered from: " + StoreFrontLocation[i] + "   at datetime: " + creationTime + "\n");
-                costOfOrder += costOfLineItem;
+            for(int i = 0; i < o.Count; i++){
+                for(int j = 0; j < o[i].LineItems.Count; j ++) {
+                    int costOfLineItem = o[i].LineItems[i].Products.Price * o[i].LineItems[i].Quantity;
+                    orderString += (o[i].LineItems[i].Products.Name + " " + o[i].LineItems[i].Quantity + " = " + o[i].LineItems[i].Quantity + "*$" + o[i].LineItems[i].Products.Price + " = $" + costOfLineItem + "       Ordered from: " + o[i].StoreFrontLocation[i] + "   at datetime: " + o[i].creationTime + "\n");
+                    costOfOrder += costOfLineItem;
+                }
+                
             }
             orderString += ("Total Cost: $" + costOfOrder);
             return orderString;
         }
-*/
+
         public Order AddCart(Order o_order, int custId, int storeId){
             Inventory storeInventory = GetSpecificInventory(storeId);
             if(storeInventory.quantity[0] < o_order.LineItems[0].Quantity ){
