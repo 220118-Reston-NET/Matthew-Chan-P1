@@ -31,3 +31,20 @@
 2022-03-01 19:53:25.024 -08:00 [INF] Error, Cart was empty
 2022-03-01 19:54:38.094 -08:00 [INF] Adding an order to the cart
 2022-03-01 19:54:38.509 -08:00 [INF] Error, Cart was empty
+2022-03-01 19:55:41.888 -08:00 [INF] Getting the orders from the cart
+2022-03-01 19:55:42.894 -08:00 [INF] Error, Cart was empty
+2022-03-01 19:55:52.527 -08:00 [INF] Adding an order to the cart
+2022-03-01 19:55:53.154 -08:00 [INF] Order successfully added into the cart
+2022-03-01 19:55:58.393 -08:00 [INF] Getting the orders from the cart
+2022-03-01 19:56:08.272 -08:00 [INF] Committing cart to orders
+2022-03-01 19:56:09.254 -08:00 [INF] Order successful. Cart cleared
+2022-03-01 19:56:13.084 -08:00 [INF] Getting the orders from the cart
+2022-03-01 19:56:13.141 -08:00 [INF] Error, Cart was empty
+2022-03-01 19:58:41.195 -08:00 [INF] Checking Customer Security Clearance
+2022-03-01 20:00:04.345 -08:00 [INF] Adding an order to the cart
+2022-03-01 20:00:04.721 -08:00 [INF] Order successfully added into the cart
+2022-03-01 20:00:08.456 -08:00 [INF] Getting the orders from the cart
+2022-03-01 20:00:12.707 -08:00 [INF] Getting the orders from the cart
+2022-03-01 20:00:18.128 -08:00 [INF] Adding an order to the cart
+2022-03-01 20:00:18.524 -08:00 [INF] Order successfully added into the cart
+2022-03-01 20:00:20.428 -08:00 [INF] Getting the orders from the cart
