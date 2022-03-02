@@ -530,7 +530,8 @@ namespace ShopDL
                         shopId,
                         listOfLineItems,
                         listOfStoreFrontLocation,
-                        tPrice
+                        tPrice,
+                        creationTime
                     ));
                     
                     
