@@ -1,0 +1,18 @@
+[
+  {
+    "profId": 0,
+    "Name": "John Smith",
+    "Age": 33,
+    "Address": "Utopia",
+    "Email": "John.Smith@gmail.com",
+    "PhoneNumber": "123-456-7890"
+  },
+  {
+    "profId": 1,
+    "Name": "Joe Doe",
+    "Age": 42,
+    "Address": "Nowhere",
+    "Email": "JoeDoe@hotmail.com",
+    "PhoneNumber": "987-654-3210"
+  }
+]
